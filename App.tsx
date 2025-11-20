@@ -96,8 +96,7 @@ function App() {
         return;
     }
     setBooks(prev => [book, ...prev]);
-    setView(AppView.353
-           );
+setView(AppView.ADD           );
   };
 
   const handleImportBooks = (newBooks: Book[]) => {
