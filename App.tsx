@@ -13,7 +13,6 @@ import { Spinner } from './components/Spinner';
 
 function App() {
   const [view, setView] = useState<AppView>(AppView.LIST);
-                                           );
   const [books, setBooks] = useState<Book[]>([]);
   const [displayMode, setDisplayMode] = useState<DisplayMode>('GRID');
   const [searchQuery, setSearchQuery] = useState('');
