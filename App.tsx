@@ -96,7 +96,7 @@ function App() {
         return;
     }
     setBooks(prev => [book, ...prev]);
-setView(AppView.ADD           );
+    setView(AppView.LIST);
   };
 
   const handleImportBooks = (newBooks: Book[]) => {
@@ -184,7 +184,7 @@ setView(AppView.ADD           );
         {/* Header */}
         <header className="bg-white/95 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-20 shadow-sm">
           <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView(AppView.ADD)}>
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView(AppView.LIST)}>
               <div className="bg-amber-700 text-white p-1.5 rounded-lg shadow-md">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -199,7 +199,7 @@ setView(AppView.ADD           );
             <div className="flex items-center gap-2">
                 <nav className="flex gap-1 bg-gray-100/80 p-1 rounded-lg overflow-x-auto backdrop-blur-sm">
                 <button
-                    onClick={() => setView(AppView.ADD)}
+                    onClick={() => setView(AppView.LIST)}
                     className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all whitespace-nowrap ${
                     view === AppView.LIST ? 'bg-white text-amber-800 shadow-sm' : 'text-gray-600 hover:text-gray-900'
                     }`}
@@ -349,7 +349,7 @@ setView(AppView.ADD           );
                     )}
 
                     {books.length === 0 ? (
-<WelcomeScreen onStart                   ={                          ={() => setView(AppView.ADD)} />
+                        <WelcomeScreen onStart={() => setView(AppView.ADD)} />
                     ) : (
                         <>
                         {/* Content Display */}
@@ -385,15 +385,14 @@ setView(AppView.ADD           );
                 {view === AppView.ADD && (
                     <AddBookForm 
                     onAdd={handleAddBook} 
-                    onCancel={() => setView(AppView.ADD)} 
+                    onCancel={() => setView(AppView.LIST)} 
                     />
                 )}
 
                 {view === AppView.IMPORT && (
                     <ImportBooks
                     onImport={handleImportBooks}
-                    onCancel={() => 352
-                    }
+                    onCancel={() => setView(AppView.LIST)}
                     />
                 )}
 
