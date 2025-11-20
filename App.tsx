@@ -12,7 +12,8 @@ import { fetchGoogleSheetData } from './services/csvParser';
 import { Spinner } from './components/Spinner';
 
 function App() {
-  const [view, setView] = useState<AppView>(AppView.LIST);
+  const [view, setView] = useState<AppView>(AppView.353
+                                           );
   const [books, setBooks] = useState<Book[]>([]);
   const [displayMode, setDisplayMode] = useState<DisplayMode>('GRID');
   const [searchQuery, setSearchQuery] = useState('');
@@ -96,7 +97,8 @@ function App() {
         return;
     }
     setBooks(prev => [book, ...prev]);
-    setView(AppView.LIST);
+    setView(AppView.353
+           );
   };
 
   const handleImportBooks = (newBooks: Book[]) => {
@@ -349,7 +351,8 @@ function App() {
                     )}
 
                     {books.length === 0 ? (
-                        <WelcomeScreen onStart={() => setView(AppView.LIST)} />
+                        <352
+                          ={() => setView(AppView.ADD)} />
                     ) : (
                         <>
                         {/* Content Display */}
@@ -392,7 +395,8 @@ function App() {
                 {view === AppView.IMPORT && (
                     <ImportBooks
                     onImport={handleImportBooks}
-                    onCancel={() => setView(AppView.LIST)}
+                    onCancel={() => 352
+                    }
                     />
                 )}
 
