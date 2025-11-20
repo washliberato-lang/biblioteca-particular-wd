@@ -2,8 +2,7 @@ import React from 'react';
 import { AppView } from '../types';
 
 interface WelcomeScreenProps {
-  onStart: : () => void;
-}
+  onStart: () => void;}
 
 export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
   return (
