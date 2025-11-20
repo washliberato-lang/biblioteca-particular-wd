@@ -2,7 +2,7 @@ import React from 'react';
 import { AppView } from '../types';
 
 interface WelcomeScreenProps {
-  onNavigate: (view: AppView) => void;
+  onStart: : () => void;
 }
 
 export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
@@ -20,13 +20,10 @@ export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
         </h1>
 
         <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-          Sua coleção pessoal de livros está aguardando você.
-          <br />
-          Explore, organize e descubra novos títulos.
-        </p>
+                Explore os livros da biblioteca.        </p>
 
         <button
-          onClick={() => onNavigate(AppView.LIST)}
+          onClick={() => onStar()}
           className="bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl shadow-amber-700/30 transition-all transform hover:scale-105 active:scale-95"
         >
           Começar a Navegar →
