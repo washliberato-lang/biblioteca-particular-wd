@@ -207,15 +207,6 @@ function App() {
                     Acervo
                 </button>
                 
-                {!isReadOnly && !sheetUrl && (
-                    <button
-                        onClick={() => setView(AppView.IMPORT)}
-                        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all whitespace-nowrap flex items-center gap-1 ${
-                        view === AppView.IMPORT ? 'bg-white text-amber-800 shadow-sm' : 'text-gray-600 hover:text-gray-900'
-                        }`}
-                    >
-                        Importar
-                    </button>
                 )}
                 
                 <button
@@ -359,7 +350,7 @@ function App() {
                     )}
 
                     {books.length === 0 ? (
-                        <WelcomeScreen onNavigate={setView} />
+                        <WelcomeScreen onStart={() => setView(AppView.LIST)} />
                     ) : (
                         <>
                         {/* Content Display */}
