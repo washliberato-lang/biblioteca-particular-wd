@@ -4,8 +4,7 @@ import { AppView } from '../types';
 interface WelcomeScreenProps {
   onStart: () => void;}
 
-export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
-  return (
+export function WelcomeScreen({ onStart }: WelcomeScreenProps) {  return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center text-center animate-fade-in">
       <div className="glass-panel p-12 rounded-3xl shadow-2xl max-w-2xl mx-auto border border-white/20">
         <div className="bg-gradient-to-br from-amber-700 to-amber-900 text-white p-6 rounded-2xl shadow-lg mb-8 inline-block">
@@ -22,7 +21,7 @@ export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
                 Explore os livros da biblioteca.        </p>
 
         <button
-          onClick={() => onStar()}
+          onClick={() => onStart()}
           className="bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl shadow-amber-700/30 transition-all transform hover:scale-105 active:scale-95"
         >
           Começar a Navegar →
