@@ -207,7 +207,6 @@ function App() {
                     Acervo
                 </button>
                 
-                )}
                 
                 <button
                     onClick={() => setView(AppView.CHAT)}
