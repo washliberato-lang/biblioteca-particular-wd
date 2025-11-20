@@ -1,128 +1,43 @@
-
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { AppView } from '../types';
 
 interface WelcomeScreenProps {
   onNavigate: (view: AppView) => void;
 }
 
-export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onNavigate }) => {
-  
-  // Lista de citações inspiradoras
-  const quotes = [
-    { text: "Um livro é um sonho que você segura na mão.", author: "Neil Gaiman" },
-    { text: "Sempre imaginei que o paraíso fosse uma espécie de livraria.", author: "Jorge Luis Borges" },
-    { text: "Os livros não mudam o mundo, quem muda o mundo são as pessoas. Os livros só mudam as pessoas.", author: "Mário Quintana" },
-    { text: "A leitura de um bom livro é um diálogo incessante: o livro fala e a alma responde.", author: "André Maurois" },
-    { text: "Muitos homens iniciaram uma nova era na sua vida a partir da leitura de um livro.", author: "Henry David Thoreau" },
-    { text: "Ler é viajar sem sair do lugar, voar sem ter asas, caminhar sem tirar os pés do chão.", author: "Autor Desconhecido" },
-    { text: "Não há amigo tão leal quanto um livro.", author: "Ernest Hemingway" }
-  ];
-
-  // Escolhe uma citação aleatória apenas na montagem do componente
-  const randomQuote = useMemo(() => {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    return quotes[randomIndex];
-  }, []);
-
+export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
   return (
-    <div className="animate-fade-in glass-panel rounded-3xl overflow-hidden shadow-2xl border border-white/40 flex flex-col md:flex-row min-h-[600px]">
-      
-      {/* Lado Esquerdo: Conteúdo e Ações */}
-      <div className="flex-1 p-8 md:p-12 flex flex-col justify-center relative z-10 bg-white/80 md:bg-transparent">
-        
-        <div className="mb-8">
-          <span className="inline-block py-1 px-3 rounded-full bg-amber-100 text-amber-800 text-xs font-bold tracking-wider uppercase mb-4">
-            Gestão Inteligente de Livros
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 serif leading-tight mb-4">
-            Construa o seu <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-orange-600">
-              Legado Literário
-            </span>
-          </h1>
-          <p className="text-lg text-gray-600 leading-relaxed max-w-md">
-            "Um quarto sem livros é como um corpo sem alma." <br/>
-            <span className="text-sm text-gray-400 italic">— Cícero</span>
+    <div className="min-h-[60vh] flex flex-col items-center justify-center text-center animate-fade-in">
+      <div className="glass-panel p-12 rounded-3xl shadow-2xl max-w-2xl mx-auto border border-white/20">
+        <div className="bg-gradient-to-br from-amber-700 to-amber-900 text-white p-6 rounded-2xl shadow-lg mb-8 inline-block">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+        </div>
+
+        <h1 className="text-4xl font-bold text-gray-900 serif mb-4">
+          Bem-vindo à Biblioteca W&D
+        </h1>
+
+        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+          Sua coleção pessoal de livros está aguardando você.
+          <br />
+          Explore, organize e descubra novos títulos.
+        </p>
+
+        <button
+          onClick={() => onNavigate(AppView.LIST)}
+          className="bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl shadow-amber-700/30 transition-all transform hover:scale-105 active:scale-95"
+        >
+          Começar a Navegar →
+        </button>
+
+        <div className="mt-8 pt-8 border-t border-gray-200">
+          <p className="text-sm text-gray-500">
+            Sistema de gerenciamento inteligente de biblioteca pessoal
           </p>
-        </div>
-
-        <div className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <button
-              onClick={() => onNavigate(AppView.IMPORT)}
-              className="group relative p-4 rounded-xl bg-white border-2 border-amber-100 hover:border-amber-300 shadow-sm hover:shadow-md transition-all text-left flex flex-col gap-2"
-            >
-              <div className="bg-amber-100 w-10 h-10 rounded-lg flex items-center justify-center text-amber-700 group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                </svg>
-              </div>
-              <div>
-                <span className="block font-bold text-gray-800 group-hover:text-amber-800">Importar Planilha</span>
-                <span className="text-xs text-gray-500">Traga seus dados do Excel ou Drive em segundos.</span>
-              </div>
-            </button>
-
-            <button
-              onClick={() => onNavigate(AppView.ADD)}
-              className="group relative p-4 rounded-xl bg-amber-700 hover:bg-amber-800 shadow-lg hover:shadow-amber-700/30 transition-all text-left flex flex-col gap-2 text-white"
-            >
-              <div className="bg-white/20 w-10 h-10 rounded-lg flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-              </div>
-              <div>
-                <span className="block font-bold">Adicionar Novo</span>
-                <span className="text-xs text-amber-200">Use IA para preencher os detalhes automaticamente.</span>
-              </div>
-            </button>
-          </div>
-        </div>
-
-        <div className="mt-10 pt-6 border-t border-gray-200 flex items-center gap-4 text-sm text-gray-500">
-          <div className="flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>Organização automática</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span>Chat com Acervo</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Lado Direito: Imagem Inspiradora */}
-      <div className="md:w-1/2 relative overflow-hidden hidden md:block group">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10"></div>
-        <img 
-          src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2228&auto=format&fit=crop" 
-          alt="Biblioteca aconchegante" 
-          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-        />
-        
-        <div className="absolute bottom-8 left-8 right-8 z-20 text-white">
-          <div className="bg-white/10 backdrop-blur-md p-6 rounded-xl border border-white/20 shadow-lg">
-             <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center font-bold text-white text-xs shrink-0">
-                  W&D
-                </div>
-                <span className="font-semibold text-sm text-white/90 uppercase tracking-wider">Inspiração do Dia</span>
-             </div>
-             <p className="text-lg font-serif italic text-white leading-relaxed">
-               "{randomQuote.text}"
-             </p>
-             <p className="text-sm text-amber-200 mt-2 font-medium text-right">
-               — {randomQuote.author}
-             </p>
-          </div>
         </div>
       </div>
     </div>
   );
-};
+}
