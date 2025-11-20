@@ -12,7 +12,7 @@ import { fetchGoogleSheetData } from './services/csvParser';
 import { Spinner } from './components/Spinner';
 
 function App() {
-  const [view, setView] = useState<AppView>(AppView.353
+  const [view, setView] = useState<AppView>(AppView.LIST);
                                            );
   const [books, setBooks] = useState<Book[]>([]);
   const [displayMode, setDisplayMode] = useState<DisplayMode>('GRID');
