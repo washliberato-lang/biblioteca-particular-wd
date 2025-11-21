@@ -10,10 +10,11 @@ import { WelcomeScreen } from './components/WelcomeScreen';
 import { ConfigModal } from './components/ConfigModal';
 import { fetchGoogleSheetData } from './services/csvParser';
 import { Spinner } from './components/Spinner';
+import { booksService } from './lib/supabase';
 
 function App() {
   const [view, setView] = useState<AppView>(AppView.LIST);
-  const [books, setBooks] = useState<Book[]>([]);
+    const [books, setBooks] = useState<Book[]>([]);
   const [displayMode, setDisplayMode] = useState<DisplayMode>('GRID');
   const [searchQuery, setSearchQuery] = useState('');
   const [showConfig, setShowConfig] = useState(false);
@@ -27,6 +28,15 @@ function App() {
   const [sortBy, setSortBy] = useState<string>('TITLE_ASC');
   const [selectedGenre, setSelectedGenre] = useState<string>('Todos');
 
+    // Carregar livros do Supabase ao iniciar
+  useEffect(() => {
+    const loadBooks = async () => {
+      const booksFromDb = await booksService.getAll();
+      setBooks(booksFromDb);
+    };
+    loadBooks();
+  }, []);
+
   // Initialize: Check URL params for sheet, otherwise local storage
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -39,7 +49,8 @@ function App() {
       loadSheetData(sharedSheet);
     } else {
       // Admin / Local Mode
-      const savedUrl = localStorage.getItem('biblioteca-wd-sheet-url');
+      const savedUrl = 17
+        .getItem('biblioteca-wd-sheet-url');
       if (savedUrl) {
          setSheetUrl(savedUrl);
          loadSheetData(savedUrl);
@@ -59,7 +70,7 @@ function App() {
   // Persist books ONLY if not in read-only mode and not using sheet
   useEffect(() => {
     if (!isReadOnly && !sheetUrl) {
-        localStorage.setItem('biblioteca-wd-books', JSON.stringify(books));
+        
     }
   }, [books, isReadOnly, sheetUrl]);
 
