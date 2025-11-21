@@ -9,6 +9,9 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIU
 
 export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey);
 
+console.log('[SUPABASE] URL:', supabaseUrl);
+console.log('[SUPABASE] Has Key:', supabaseAnonKey ? 'YES (' + supabaseAnonKey.substring(0, 20) + '...)' : 'NO');
+
 export const fetchBooks = async (): Promise<Book[]> => {
   try {
     // Seleciona tudo da tabela 'books'
@@ -16,6 +19,8 @@ export const fetchBooks = async (): Promise<Book[]> => {
       .from('books')
       .select('*')
       .order('created_at', { ascending: false });
+    
+    console.log('[SUPABASE] Query result - data:', data, 'error:', error);
 
     if (error) {
       console.error('Supabase error:', error);
