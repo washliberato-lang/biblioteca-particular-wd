@@ -54,16 +54,6 @@ function App() {
       if (savedUrl) {
          setSheetUrl(savedUrl);
          loadSheetData(savedUrl);
-//      } else {
-         //const savedBooks = localStorage.getItem('biblioteca-wd-books');
-         //if (savedBooks) {
-            //try {
-//              setBooks(JSON.parse(savedBooks));
-            //} catch (e) {
-//              console.error("Failed to load books", e);
-            //}
-         //}
-      //}
     }
   }, []);
 
