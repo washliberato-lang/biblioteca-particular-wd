@@ -8,11 +8,6 @@ export default defineConfig(({ mode }) => {
   
   return {
     plugins: [react()],
-    define: {
-      // Mapeia variáveis de ambiente para uso no código
-      'import.meta.env.API_KEY': JSON.stringify(env.API_KEY),
-      'import.meta.env.VITE_SUPABASE_URL': JSON.stringify(env.VITE_SUPABASE_URL),
-      'import.meta.env.VITE_SUPABASE_ANON_KEY': JSON.stringify(env.VITE_SUPABASE_ANON_KEY),
-    },
+  
   };
 });
