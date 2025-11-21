@@ -10,7 +10,7 @@ import { WelcomeScreen } from './components/WelcomeScreen';
 import { ConfigModal } from './components/ConfigModal';
 import { fetchGoogleSheetData } from './services/csvParser';
 import { Spinner } from './components/Spinner';
-import { booksService } from './lib/supabase';
+import { booksService } from './src/lib/supabase';
 
 function App() {
   const [view, setView] = useState<AppView>(AppView.LIST);
