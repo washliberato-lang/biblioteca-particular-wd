@@ -49,13 +49,6 @@ function App() {
       loadSheetData(sharedSheet);
     } else {
       // Admin / Local Mode
-      const savedUrl = 17
-        .getItem('biblioteca-wd-sheet-url');
-      if (savedUrl) {
-         setSheetUrl(savedUrl);
-         loadSheetData(savedUrl);
-            }
-        }
   }, []);
 
   // Persist books ONLY if not in read-only mode and not using sheet
