@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => {
   
   return {
     plugins: [react()],
-  
+
+      // Vite expõe automaticamente variáveis VITE_* para o cliente
   };
 });
