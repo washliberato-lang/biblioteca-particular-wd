@@ -37,19 +37,6 @@ function App() {
     loadBooks();
   }, []);
 
-  // Initialize: Check URL params for sheet, otherwise local storage
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const sharedSheet = params.get('sheet');
-
-    if (sharedSheet) {
-      // Guest / Read-Only Mode
-      setIsReadOnly(true);
-      setSheetUrl(sharedSheet);
-      loadSheetData(sharedSheet);
-    } else {
-      // Admin / Local Mode
-  }, []);
 
   // Persist books ONLY if not in read-only mode and not using sheet
   useEffect(() => {
