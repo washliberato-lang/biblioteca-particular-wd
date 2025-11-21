@@ -3,9 +3,9 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { Book, SupabaseBookRow } from '../types';
 
 // Configuração específica para o banco de dados fornecido
-// Usamos process.env pois as variáveis são definidas no vite.config.ts
-const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://uhnjiprutswxflcuuazn.supabase.co';
-const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVobmppcHJ1dHN3eGZsY3V1YXpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgxMTE0OTEsImV4cCI6MjA1MzY4NzQ5MX0.iNk8y5tJ6s-bAVc-HKwqTLNd85Z3J-oOabBwI7KdaFA';
+// Usamos import.meta.env pois as variáveis são definidas no vite.config.ts
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://uhnjiprutswxflcuuazn.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVobmppcHJ1dHN3eGZsY3V1YXpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgxMTE0OTEsImV4cCI6MjA1MzY4NzQ5MX0.iNk8y5tJ6s-bAVc-HKwqTLNd85Z3J-oOabBwI7KdaFA';
 
 export const supabase: SupabaseClient = createClient(supabaseUrl, supabaseAnonKey);
 
