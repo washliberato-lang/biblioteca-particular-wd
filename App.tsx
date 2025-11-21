@@ -54,7 +54,6 @@ function App() {
       if (savedUrl) {
          setSheetUrl(savedUrl);
          loadSheetData(savedUrl);
-    }
   }, []);
 
   // Persist books ONLY if not in read-only mode and not using sheet
