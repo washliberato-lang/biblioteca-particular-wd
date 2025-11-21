@@ -20,6 +20,7 @@ export const fetchBooks = async (): Promise<Book[]> => {
       .select('*')      .order('created_at', { ascending: false });
     
     console.log('[SUPABASE] Query result - data:', data, 'error:', error);
+        console.log('[SUPABASE] Data length:', data ? data.length : 'null/undefined');
 
     if (error) {
       console.error('Supabase error:', error);
