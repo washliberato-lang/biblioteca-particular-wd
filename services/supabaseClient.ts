@@ -17,7 +17,7 @@ export const fetchBooks = async (): Promise<Book[]> => {
     // Seleciona tudo da tabela 'books'
     const { data, error } = await supabase
       .from('books')
-      .select('*')
+      .select'*')
       .order('created_at', { ascending: false });
     
     console.log('[SUPABASE] Query result - data:', data, 'error:', error);
