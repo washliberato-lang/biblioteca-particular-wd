@@ -1,38 +1,70 @@
-import React from 'react';
+
+import React, { useMemo } from 'react';
 import { AppView } from '../types';
 
 interface WelcomeScreenProps {
-  onStart: () => void;}
+  onNavigate: (view: AppView) => void;
+}
 
-export function WelcomeScreen({ onStart }: WelcomeScreenProps) {  return (
-    <div className="min-h-[60vh] flex flex-col items-center justify-center text-center animate-fade-in">
-      <div className="glass-panel p-12 rounded-3xl shadow-2xl max-w-2xl mx-auto border border-white/20">
-        <div className="bg-gradient-to-br from-amber-700 to-amber-900 text-white p-6 rounded-2xl shadow-lg mb-8 inline-block">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-          </svg>
+const quotes = [
+  { text: "Um livro é um sonho que você segura na mão.", author: "Neil Gaiman" },
+  { text: "A leitura é para o intelecto o que o exercício é para o corpo.", author: "Joseph Addison" },
+  { text: "Muitos homens iniciaram uma nova era na sua vida a partir da leitura de um livro.", author: "Henry David Thoreau" },
+  { text: "Ler é viajar sem sair do lugar, voar sem ter asas, caminhar sem tirar os pés do chão.", author: "Mario Quintana" },
+  { text: "Os livros são espelhos: neles só se vê o que possuímos dentro.", author: "Carlos Ruiz Zafón" },
+  { text: "Não há amigo tão leal quanto um livro.", author: "Ernest Hemingway" },
+  { text: "Aprender a ler é acender um fogo; cada sílaba pronunciada é uma centelha.", author: "Victor Hugo" },
+  { text: "Sempre imaginei que o paraíso fosse uma espécie de livraria.", author: "Jorge Luis Borges" },
+  { text: "Quem não lê, aos 70 anos terá vivido apenas uma vida. Quem lê, terá vivido 5000 anos.", author: "Umberto Eco" }
+];
+
+export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onNavigate }) => {
+  // Seleciona uma frase aleatória
+  const randomQuote = useMemo(() => quotes[Math.floor(Math.random() * quotes.length)], []);
+
+  return (
+    <div className="min-h-[calc(100vh-100px)] flex flex-col items-center justify-center animate-fade-in px-4">
+      
+      <div className="max-w-3xl w-full text-center space-y-8">
+        
+        {/* Logo / Header Minimalista */}
+        <div className="inline-block mb-4">
+           <div className="w-16 h-16 bg-gray-900 text-white text-2xl font-serif font-bold flex items-center justify-center rounded-lg shadow-2xl mx-auto mb-4 border border-white/20">
+             W&D
+           </div>
+           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 serif drop-shadow-sm">
+             Biblioteca Particular
+           </h1>
+           <div className="h-1 w-24 bg-amber-600 mx-auto mt-4 rounded-full"></div>
         </div>
 
-        <h1 className="text-4xl font-bold text-gray-900 serif mb-4">
-          Bem-vindo à Biblioteca W&D
-        </h1>
-
-        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                Explore os livros da biblioteca.        </p>
-
-        <button
-          onClick={() => onStart()}
-          className="bg-gradient-to-r from-amber-700 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl shadow-amber-700/30 transition-all transform hover:scale-105 active:scale-95"
-        >
-          Começar a Navegar →
-        </button>
-
-        <div className="mt-8 pt-8 border-t border-gray-200">
-          <p className="text-sm text-gray-500">
-            Sistema de gerenciamento inteligente de biblioteca pessoal
-          </p>
+        {/* Texto Descritivo */}
+        <div className="glass-panel p-8 rounded-2xl shadow-xl border border-white/30 backdrop-blur-md max-w-2xl mx-auto">
+            <p className="text-xl text-gray-800 font-light leading-relaxed">
+              Consulte obras, autores e obtenha insights com IA.
+            </p>
+            
+            <div className="mt-8">
+              <button
+                  onClick={() => onNavigate(AppView.LIST)}
+                  className="bg-gray-900 text-white px-10 py-4 rounded-full font-medium text-lg shadow-lg hover:bg-amber-700 hover:shadow-amber-500/30 hover:-translate-y-1 transition-all duration-300"
+                >
+                  Acessar Acervo
+              </button>
+            </div>
         </div>
+
+        {/* Citação Inspiradora */}
+        <div className="mt-12 max-w-xl mx-auto opacity-90">
+           <p className="text-gray-700 text-lg italic font-serif font-medium drop-shadow-sm">
+              "{randomQuote.text}"
+           </p>
+           <p className="text-gray-600 text-sm font-bold mt-2 uppercase tracking-widest">
+              — {randomQuote.author}
+           </p>
+        </div>
+
       </div>
     </div>
   );
-}
+};
